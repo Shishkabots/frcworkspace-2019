@@ -64,6 +64,9 @@ public class Robot extends TimedRobot
 	 */
 	WPI_TalonSRX leftDrive = RobotMap.leftDrive;
 	WPI_TalonSRX rightDrive = RobotMap.rightDrive;
+	WPI_VictorSPX leftSlave = RobotMap.leftSlave;
+	WPI_VictorSPX rightSlave = RobotMap.rightSlave;
+
 	@Override
 	public void robotInit() {
         RobotMap.init();
@@ -74,7 +77,7 @@ public class Robot extends TimedRobot
 		m_oi = new OI();
 		//m_intake = new Intake();
 		//m_linearslide = new LinearSlide();
-		m_drivetrain = new DriveTrain();
+		
         //m_claws = new Claws();
         //m_platform = new Platform();
 		//m_gripper = new Gripper();
@@ -83,6 +86,10 @@ public class Robot extends TimedRobot
 		leftDrive.setInverted(true);
 		rightDrive.setInverted(true);
 
+		leftSlave.setInverted(true);
+		rightSlave.setInverted(true);
+
+		m_drivetrain = new DriveTrain();
 	}
 
 	/**
@@ -124,47 +131,7 @@ public class Robot extends TimedRobot
 	@Override
 	public void autonomousPeriodic() 
 	{
-		//I just replaced with teleopperiodic
-		//doubt it works
-		Scheduler.getInstance().run();
-		
-		if(Robot.m_oi.joystick.getRawButton(3) && Robot.m_oi.joystick.getRawButton(4))
-		{
-			if(!isRecording && !hasRecorded)
-			{
-			timeAtZero = System.currentTimeMillis();
-			isRecording = true;
-			
-				try {
-					pW = new PrintWriter(new FileWriter("/home/lvuser/recordedy.0"));
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			else if(isRecording && (System.currentTimeMillis() - timeAtZero > 1000))
-			{
-				isRecording = false;
-				hasRecorded = true;
-				pW.flush();
-				pW.close();
-			}
-		}
-		if(isRecording)
-		{
-			pW.println(
-                (System.currentTimeMillis() - timeAtZero) + ","
-		        + (Robot.m_oi.xbox.getRawAxis(Robot.m_oi.rTriggerAxis) - Robot.m_oi.xbox.getRawAxis(Robot.m_oi.lTriggerAxis)) + ","
-		        + Robot.m_oi.xbox.getRawAxis(Robot.m_oi.turnAxis) + ","
-                + (
-                    (Robot.m_oi.joystick.getRawAxis(Robot.m_oi.slideAxis)
-                    + Robot.m_oi.tensionSlide
-                    - 0.2 * Robot.m_oi.joystick.getRawAxis(Robot.m_oi.otherSlideAxis)
-                ) * Robot.m_oi.throttleSlide) + ","
-            );
-
-			System.out.println((System.currentTimeMillis() - timeAtZero) + " " + 1000 * 15);
-		}
+		//I dunno what to put here
 	}
 
 	@Override

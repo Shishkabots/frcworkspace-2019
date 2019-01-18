@@ -4,7 +4,7 @@ import org.usfirst.frc.team6822.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-
+import com.ctre.phoenix.motorcontrol.can.*;
 /**
  *
  */
@@ -12,17 +12,16 @@ public class DriveTrain extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-
+    public static DifferentialDrive drivy;
 	public DriveTrain()
 	{
+        drivy = RobotMap.diffdrive;
 		//super("DriveTrain",0.2,0,0);
-		//setAbsoluteTolerance(0.05);
+        //setAbsoluteTolerance(0.05);
+        
     }
-    //drivy is a differentialdrive
-    //not sure what that means
-    //connected to ports 8 and 9
 
-	DifferentialDrive drivy = RobotMap.diffdrive;
+	
     public void initDefaultCommand() {
        //setDefaultCommand(new DriveTrainControl());
     }

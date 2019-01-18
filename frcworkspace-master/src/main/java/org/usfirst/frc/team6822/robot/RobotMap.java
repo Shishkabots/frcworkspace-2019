@@ -63,6 +63,9 @@ public class RobotMap {
 
 	public static WPI_TalonSRX leftDrive;
 	public static WPI_TalonSRX rightDrive;
+
+	public static WPI_VictorSPX leftSlave;
+	public static WPI_VictorSPX rightSlave;
 	
 	public static DifferentialDrive diffdrive;
 
@@ -90,6 +93,9 @@ public class RobotMap {
 		leftDrive = new WPI_TalonSRX(9);
   		rightDrive = new WPI_TalonSRX(8);
 		diffdrive = new DifferentialDrive(leftDrive,rightDrive);
+		leftSlave = new WPI_VictorSPX(4);
+		rightSlave = new WPI_VictorSPX(5);
+
 		
 		diffdrive.setSafetyEnabled(false);
 		linear.setSafetyEnabled(false);
