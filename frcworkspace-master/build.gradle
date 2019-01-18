@@ -7,6 +7,8 @@ def ROBOT_CLASS = "org.usfirst.frc.team6822.robot.Robot"
 
 // Define my targets (RoboRIO) and artifacts (deployable files)
 // This is added by GradleRIO's backing project EmbeddedTools.
+def includeDesktopSupport = false
+
 deploy {
     targets {
         target("roborio", edu.wpi.first.gradlerio.frc.RoboRIO) {

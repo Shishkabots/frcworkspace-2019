@@ -7,11 +7,12 @@
 
 package org.usfirst.frc.team6822.robot;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
+//import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import com.ctre.phoenix.motorcontrol.can.*;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -55,10 +56,13 @@ public class RobotMap {
 	//public static VictorSP intakeright; // actually a victorspx connected with pwm
 	//public static VictorSP intakeleft;
 
-	public static Spark leftDrive;
+	/*public static Spark leftDrive;
 	public static Spark rightDrive;
 	public static Spark leftClaw;
-	public static Spark rightClaw;
+	public static Spark rightClaw;*/
+
+	public static WPI_TalonSRX leftDrive;
+	public static WPI_TalonSRX rightDrive;
 	
 	public static DifferentialDrive diffdrive;
 
@@ -78,8 +82,13 @@ public class RobotMap {
 		//leftClaw = new Spark(leftClawSpot);
 		//rightClaw = new Spark(rightClawSpot);
 
-		leftDrive = new Spark(sparkLeft);
-		rightDrive = new Spark(sparkRight);
+		//old motors, probably can scrap
+		//leftDrive = new Spark(sparkLeft);
+		//rightDrive = new Spark(sparkRight);
+
+		//new motors, talon
+		leftDrive = new WPI_TalonSRX(9);
+  		rightDrive = new WPI_TalonSRX(8);
 		diffdrive = new DifferentialDrive(leftDrive,rightDrive);
 		
 		diffdrive.setSafetyEnabled(false);

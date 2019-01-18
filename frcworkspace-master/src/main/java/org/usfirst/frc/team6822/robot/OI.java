@@ -72,11 +72,11 @@ public class OI {
 	public int turnAxis = 0; // input for turning in the drivetrain (multiplied by some other things)
 
 	//joystick 1 mappings:
-	/*public int slideAxis = 3; // when pressed, moves the slide up (it's a button, not joystick)
+	public int slideAxis = 3; // when pressed, moves the slide up (it's a button, not joystick)
 	public int otherSlideAxis = 2; // when pressed, moves the slide down
 	public int lClawAxis = 4; // left side claw (note that it is useful to be able to control left and right claws separately)
 	public int rClawAxis = 0; // right side claw
-	*/
+	
 
 	public double throttleBoost = 1.0;
 	public double throttleDrive = 0.45;
