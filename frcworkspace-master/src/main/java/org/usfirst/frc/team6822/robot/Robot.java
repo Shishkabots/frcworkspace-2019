@@ -91,8 +91,10 @@ public class Robot extends TimedRobot
         if (!pipeline.filterContoursOutput().isEmpty()) {
             Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
             synchronized (imgLock) {
-                centerX = r.x + (r.width / 2);
-            }
+				centerX = r.x + (r.width / 2);
+				System.out.println(centerX);
+			}
+			
         }	
     	});
     	visionThread.start();
