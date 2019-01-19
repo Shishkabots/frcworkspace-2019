@@ -39,6 +39,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.*;
 import edu.wpi.first.wpilibj.vision.VisionRunner;
 import edu.wpi.first.wpilibj.vision.VisionThread;
@@ -74,6 +76,7 @@ public class Robot extends TimedRobot
 	private VisionThread visionThread;
 	private double centerX = 0.0;
 	private final Object imgLock = new Object();
+	public static TeleOpCommands tele;
 
 	@Override
 	public void robotInit() {
@@ -105,6 +108,10 @@ public class Robot extends TimedRobot
 		rightSlave.setInverted(true);
 
 		m_drivetrain = new DriveTrain();
+
+		//code to test motors
+		leftDrive.set(ControlMode.PercentOutput, 50);
+
 	}
 
 	/**
@@ -128,10 +135,11 @@ public class Robot extends TimedRobot
 	 */
 	
 	//double[][] loadedAction = new double[1000][8];
-	boolean boi = false;
+	
 	@Override
 	public void autonomousInit() {
-		
+		tele = new TeleOpCommands();
+		tele.start();
 
 	}
 
@@ -149,8 +157,12 @@ public class Robot extends TimedRobot
 
 	@Override
 	public void teleopInit() {
-		
-		new TeleOpCommands().start();
+
+		//dunno if this works or if it matters
+		tele.end();
+		tele = new TeleOpCommands();
+		tele.start();
+
 	}
 
 	/**
