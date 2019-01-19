@@ -53,15 +53,12 @@ import edu.wpi.first.wpilibj.vision.VisionThread;
 public class Robot extends TimedRobot 
 {
     public static OI m_oi;
-	//public static Intake m_intake;
-	//public static LinearSlide m_linearslide;
+	
 	public static DriveTrain m_drivetrain;
 	private static final int IMG_WIDTH = 320;
 	private static final int IMG_HEIGHT = 240;
 
-	//public static Claws m_claws;
-    //public static Platform m_platform;
-    //public static Gripper m_gripper;
+	
 	Command m_onlyCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -99,13 +96,7 @@ public class Robot extends TimedRobot
 		
 
 		m_oi = new OI();
-		//m_intake = new Intake();
-		//m_linearslide = new LinearSlide();
 		
-        //m_claws = new Claws();
-        //m_platform = new Platform();
-		//m_gripper = new Gripper();
-
 		//idk what this is but it was in the example so...
 		leftDrive.setInverted(true);
 		rightDrive.setInverted(true);
@@ -140,9 +131,7 @@ public class Robot extends TimedRobot
 	boolean boi = false;
 	@Override
 	public void autonomousInit() {
-		//im trying something in case autonomous is still called
-		//m_onlyCommand = new TeleOpCommands().start();
-		boi = true;
+		
 
 	}
 
@@ -160,12 +149,7 @@ public class Robot extends TimedRobot
 
 	@Override
 	public void teleopInit() {
-		//ignore the boi thing for now
-		//probably not important
 		
-		if(boi) {
-			//m_onlyCommand().stop();
-		}
 		new TeleOpCommands().start();
 	}
 

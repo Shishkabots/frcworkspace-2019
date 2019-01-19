@@ -20,74 +20,21 @@ import com.ctre.phoenix.motorcontrol.can.*;
  * the wiring easier and significantly reduces the number of magic numbers
  * floating around.
  */
+
 public class RobotMap {
-	//can
-	//public static int talon1Intake = 1;
-	//public static int talon2Intake = 2;
-	//PWM
-	public static int victorLinear = 7;
-	//public static int victorClimber = 5;
-	public static int sparkLeft = 9;
-	public static int sparkRight = 8;
-	//public static int intakeLeftSpot = 2;
-	//public static int intakeRightSpot = 9;
-	//public static int leftClawSpot = 4;
-	//public static int rightClawSpot = 5;
-
-	//Solenoids
-	/*
-	public static int LPlatformFwdPort = 0;
-	public static int LPlatformBkwdPort = 1;
-	public static int RPlatformFwdPort = 2;
-	public static int RPlatformBkwdPort = 3;
-	public static int LGripperFwdPort = 4;
-	public static int LGripperBkwdPort = 5;
-	public static int RGripperFwdPort = 6;
-	public static int RGripperBkwdPort = 7;
-	*/
-
-	//public static int OneGripperPortFwd = 0;
-	//public static int OneGripperPortBack = 1;
 	
-	//motors
-	//public static TalonSRX talon2;
-	public static VictorSP linear; // actually a victorsp
-	//public static VictorSP climber; // actually a victorsp
-	//public static VictorSP intakeright; // actually a victorspx connected with pwm
-	//public static VictorSP intakeleft;
-
-	/*public static Spark leftDrive;
-	public static Spark rightDrive;
-	public static Spark leftClaw;
-	public static Spark rightClaw;*/
-
+	//motor controllers
 	public static WPI_TalonSRX leftDrive;
 	public static WPI_TalonSRX rightDrive;
 
 	public static WPI_VictorSPX leftSlave;
 	public static WPI_VictorSPX rightSlave;
 	
+	//differential drive
 	public static DifferentialDrive diffdrive;
-
-	//public static DoubleSolenoid LGripper;
-	//public static DoubleSolenoid RGripper;
-	//public static DoubleSolenoid Lplatform;
-	//public static DoubleSolenoid Rplatform;
-	//public static DoubleSolenoid OneGripper;
 
 	public static void init()
 	{
-		//not sure what this is 
-		//don't want to delete yet
-		linear = new VictorSP(victorLinear);
-		
-		
-		//leftClaw = new Spark(leftClawSpot);
-		//rightClaw = new Spark(rightClawSpot);
-
-		//old motors, probably can scrap
-		//leftDrive = new Spark(sparkLeft);
-		//rightDrive = new Spark(sparkRight);
 
 		//new motors, talon
 		leftDrive = new WPI_TalonSRX(9);
@@ -98,18 +45,7 @@ public class RobotMap {
 
 		
 		diffdrive.setSafetyEnabled(false);
-		linear.setSafetyEnabled(false);
 		
-		//OneGripper = new DoubleSolenoid(OneGripperPortFwd, OneGripperPortBack);
-		/*
-		Lplatform = new DoubleSolenoid(LPlatformFwdPort, LPlatformBkwdPort);
-		Rplatform = new DoubleSolenoid(RPlatformFwdPort, RPlatformBkwdPort);
-		LGripper = new DoubleSolenoid(LGripperFwdPort, LGripperBkwdPort);
-		RGripper = new DoubleSolenoid(RGripperFwdPort, RGripperBkwdPort);
-		*/
-
-		//drop1 = new VictorSP(drop1spot);
-		//drop2 = new VictorSP(drop2spot);
 	}
 	
 	
