@@ -27,6 +27,9 @@ import java.io.PrintWriter;
 import org.usfirst.frc.team6822.robot.commands.*;
 import org.usfirst.frc.team6822.robot.subsystems.*;
 
+import org.opencv.core.Rect;
+import org.opencv.imgproc.Imgproc;
+
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -37,7 +40,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.ctre.phoenix.motorcontrol.can.*;
-
+import edu.wpi.first.wpilibj.vision.VisionRunner;
+import edu.wpi.first.wpilibj.vision.VisionThread;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -52,6 +56,8 @@ public class Robot extends TimedRobot
 	//public static Intake m_intake;
 	//public static LinearSlide m_linearslide;
 	public static DriveTrain m_drivetrain;
+	private static final int IMG_WIDTH = 320;
+	private static final int IMG_HEIGHT = 240;
 
 	//public static Claws m_claws;
     //public static Platform m_platform;
@@ -68,12 +74,29 @@ public class Robot extends TimedRobot
 	WPI_VictorSPX leftSlave = RobotMap.leftSlave;
 	WPI_VictorSPX rightSlave = RobotMap.rightSlave;
 
+	private VisionThread visionThread;
+	private double centerX = 0.0;
+	private final Object imgLock = new Object();
+
 	@Override
 	public void robotInit() {
         RobotMap.init();
         
 		UsbCamera theCamera = CameraServer.getInstance().startAutomaticCapture();
-		theCamera.setVideoMode(theCamera.enumerateVideoModes()[101]);
+		// old camera code
+		//theCamera.setVideoMode(theCamera.enumerateVideoModes()[101]);
+		theCamera.setResolution(IMG_WIDTH, IMG_HEIGHT);
+    
+    	visionThread = new VisionThread(theCamera, new GripPipeline(), pipeline -> {
+        if (!pipeline.filterContoursOutput().isEmpty()) {
+            Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
+            synchronized (imgLock) {
+                centerX = r.x + (r.width / 2);
+            }
+        }	
+    	});
+    	visionThread.start();
+		
 
 		m_oi = new OI();
 		//m_intake = new Intake();
@@ -193,7 +216,7 @@ public class Robot extends TimedRobot
                     + Robot.m_oi.tensionSlide
                     - 0.2 * Robot.m_oi.joystick.getRawAxis(Robot.m_oi.otherSlideAxis)
                 ) * Robot.m_oi.throttleSlide) + ","
-            + leftDrive.getMotorOutputPercent() + ", " + rightDrive.getMotorOutputPercent());
+            );
 
 			System.out.println((System.currentTimeMillis() - timeAtZero) + " " + 1000 * 15);
 		}
