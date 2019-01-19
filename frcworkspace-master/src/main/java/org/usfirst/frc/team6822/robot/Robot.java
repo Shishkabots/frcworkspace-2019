@@ -37,6 +37,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.ctre.phoenix.motorcontrol.can.*;
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -192,7 +193,7 @@ public class Robot extends TimedRobot
                     + Robot.m_oi.tensionSlide
                     - 0.2 * Robot.m_oi.joystick.getRawAxis(Robot.m_oi.otherSlideAxis)
                 ) * Robot.m_oi.throttleSlide) + ","
-            );
+            + leftDrive.getMotorOutputPercent() + ", " + rightDrive.getMotorOutputPercent());
 
 			System.out.println((System.currentTimeMillis() - timeAtZero) + " " + 1000 * 15);
 		}
