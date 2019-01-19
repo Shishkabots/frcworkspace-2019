@@ -119,7 +119,9 @@ public class Robot extends TimedRobot
 		m_drivetrain = new DriveTrain();
 
 		//code to test motors
-		leftDrive.set(ControlMode.PercentOutput, 50);
+		leftSlave.set(ControlMode.PercentOutput, 50);
+
+		//leftDrive.set(ControlMode.PercentOutput, 50);
 
 	}
 

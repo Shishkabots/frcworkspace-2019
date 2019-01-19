@@ -46,8 +46,8 @@ public class RobotMap {
 		leftDrive = new WPI_TalonSRX(3);
   		rightDrive = new WPI_TalonSRX(4);
 		diffdrive = new DifferentialDrive(leftDrive,rightDrive);
-		leftSlave = new WPI_VictorSPX(5);
-		rightSlave = new WPI_VictorSPX(6);
+		leftSlave = new WPI_VictorSPX(1);
+		rightSlave = new WPI_VictorSPX(2);
 
 		Piston1 = new DoubleSolenoid(7, 8);
 		Piston2 = new DoubleSolenoid(9,10);
