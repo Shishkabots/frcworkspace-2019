@@ -44,6 +44,9 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.*;
 import edu.wpi.first.wpilibj.vision.VisionRunner;
 import edu.wpi.first.wpilibj.vision.VisionThread;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -78,6 +81,8 @@ public class Robot extends TimedRobot
 	private final Object imgLock = new Object();
 	public static TeleOpCommands tele;
 
+	public static Hatch m_hatch;
+	//public static Button m_hatchbutt;
 	@Override
 	public void robotInit() {
         RobotMap.init();
@@ -101,6 +106,8 @@ public class Robot extends TimedRobot
 		
 
 		m_oi = new OI();
+		m_hatch = new Hatch();
+		//m_hatchbutt = m_oi.hatchbutt;
 		
 		//idk what this is but it was in the example so...
 		leftDrive.setInverted(true);
@@ -164,6 +171,7 @@ public class Robot extends TimedRobot
 		tele.end();
 		tele = new TeleOpCommands();
 		tele.start();
+		
 
 	}
 

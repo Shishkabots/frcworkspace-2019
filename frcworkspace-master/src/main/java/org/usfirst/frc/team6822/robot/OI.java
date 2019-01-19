@@ -10,6 +10,8 @@ package org.usfirst.frc.team6822.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import org.usfirst.frc.team6822.robot.commands.*;
+import org.usfirst.frc.team6822.robot.subsystems.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -57,7 +59,9 @@ public class OI {
     public Button platbutt = new JoystickButton(joystick, 3); // unsure if this is an open port, need to remap
 	public Button gripperButton = new JoystickButton(joystick, 4); // also unsure if open port
 	*/
-    
+	public Button hatchbutt = new JoystickButton(joystick,5);
+	
+    //hatchbutt.whenPressed(new HatchActivate());
     
     /*public Button slideup = new JoystickButton(joystick,6);
 	public Button slidedown = new JoystickButton(joystick,4);*/
@@ -90,7 +94,6 @@ public class OI {
 	public double tensionSlide = 0.05; //helps maintain the tension in the slide
 	
 	
-	
 	// There are a few additional built in buttons you can use. Additionally,
 	// by subclassing Button you can create custom triggers and bind those to
 	// commands the same as any other Button.
@@ -110,4 +113,7 @@ public class OI {
 	// Start the command when the button is released and let it run the command
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
+	public OI() {
+		hatchbutt.whenPressed(new HatchActivate());
+	}
 }
