@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team6822.robot;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 //import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Ultrasonic;
@@ -33,6 +34,11 @@ public class RobotMap {
 	//differential drive
 	public static DifferentialDrive diffdrive;
 
+	public static DoubleSolenoid Piston1;
+	public static DoubleSolenoid Piston2;
+	public static DoubleSolenoid Piston3;
+
+
 	public static void init()
 	{
 
@@ -42,6 +48,10 @@ public class RobotMap {
 		diffdrive = new DifferentialDrive(leftDrive,rightDrive);
 		leftSlave = new WPI_VictorSPX(4);
 		rightSlave = new WPI_VictorSPX(5);
+
+		Piston1 = new DoubleSolenoid(0, 1);
+		Piston2 = new DoubleSolenoid(2,3);
+		Piston3 = new DoubleSolenoid(4,5);
 
 		
 		diffdrive.setSafetyEnabled(false);
