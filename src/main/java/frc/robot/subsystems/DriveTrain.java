@@ -1,6 +1,6 @@
-package org.usfirst.frc.team6822.robot.subsystems;
+package frc.robot.subsystems;
 
-import org.usfirst.frc.team6822.robot.RobotMap;
+import frc.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;

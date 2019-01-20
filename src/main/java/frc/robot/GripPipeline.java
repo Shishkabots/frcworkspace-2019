@@ -1,4 +1,4 @@
-package org.usfirst.frc.team6822.robot;
+package frc.robot;
 
 import java.io.File;
 import java.io.FileWriter;

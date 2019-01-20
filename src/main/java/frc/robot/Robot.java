@@ -16,7 +16,7 @@ ctre removed library
 id on talon and victor
 */
 
-package org.usfirst.frc.team6822.robot;
+package frc.robot;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -24,8 +24,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import org.usfirst.frc.team6822.robot.commands.*;
-import org.usfirst.frc.team6822.robot.subsystems.*;
+import frc.robot.commands.*;
+import frc.robot.subsystems.*;
 
 import org.opencv.core.Rect;
 import org.opencv.imgproc.Imgproc;
