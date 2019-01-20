@@ -1,19 +1,19 @@
 package frc.robot.commands;
 
 import frc.robot.Robot;
+import frc.robot.subsystems.IntakeSucc;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.Timer;
 
-public class HatchActivate extends Command {
-    public HatchActivate() {
-        requires(Robot.m_hatch);
+public class Succ extends Command {
+    public Succ() {
+        requires(Robot.intakesucc);
     }
-
+    IntakeSucc succ = new IntakeSucc();
             // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-        Robot.m_hatch.setState("Off");
-        Robot.m_hatch.setState("Open");
+        succ.Succ("ON");
     
     }
         
@@ -21,7 +21,7 @@ public class HatchActivate extends Command {
     public int geytime;
     @Override
     protected void execute() {
-            geytime++;
+        geytime++;
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -33,14 +33,13 @@ public class HatchActivate extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
-        Robot.m_hatch.setState("Close");
-    	Robot.m_hatch.setState("Off");
+        succ.Succ("OFF");
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
-    	Robot.m_hatch.setState("Off");
+        succ.Succ("OFF");
     }
 }

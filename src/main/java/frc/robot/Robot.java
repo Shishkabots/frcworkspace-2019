@@ -41,6 +41,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.*;
 import edu.wpi.first.wpilibj.vision.VisionRunner;
 import edu.wpi.first.wpilibj.vision.VisionThread;
@@ -75,6 +76,7 @@ public class Robot extends TimedRobot
 	public static WPI_TalonSRX rightDrive;
 	public static WPI_VictorSPX leftSlave;
 	public static WPI_VictorSPX rightSlave;
+	public static IntakeSucc intakesucc;
 
 	private VisionThread visionThread;
 	private double centerX = 0.0;
@@ -90,9 +92,9 @@ public class Robot extends TimedRobot
 		rightDrive = RobotMap.rightDrive;
 		leftSlave = RobotMap.leftSlave;
 		rightSlave = RobotMap.rightSlave;
+		
 
 		// UsbCamera theCamera = CameraServer.getInstance().startAutomaticCapture();
-		// // old camera code
 		// //theCamera.setVideoMode(theCamera.enumerateVideoModes()[101]);
 		// theCamera.setResolution(IMG_WIDTH, IMG_HEIGHT);
     
@@ -111,6 +113,7 @@ public class Robot extends TimedRobot
 
 		m_hatch = new Hatch();
 		m_oi = new OI();
+		intakesucc = new IntakeSucc();
 		//m_hatchbutt = m_oi.hatchbutt;
 		
 		//idk what this is but it was in the example so...
@@ -126,7 +129,7 @@ public class Robot extends TimedRobot
 
 		//code to test motors
 		leftSlave.set(ControlMode.PercentOutput, 50);
-
+		
 		//leftDrive.set(ControlMode.PercentOutput, 50);
 
 	}

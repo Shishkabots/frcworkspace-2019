@@ -60,6 +60,7 @@ public class OI {
 	public Button gripperButton = new JoystickButton(joystick, 4); // also unsure if open port
 	*/
 	public Button hatchbutt = new JoystickButton(joystick,5);
+	public Button succbutt = new JoystickButton(joystick, 6);
 	
     //hatchbutt.whenPressed(new HatchActivate());
     
@@ -115,5 +116,6 @@ public class OI {
 	// button.whenReleased(new ExampleCommand());
 	public OI() {
 		hatchbutt.whenPressed(new HatchActivate());
+		succbutt.whenPressed(new Succ());
 	}
 }

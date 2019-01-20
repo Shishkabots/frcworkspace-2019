@@ -30,6 +30,8 @@ public class RobotMap {
 
 	public static WPI_VictorSPX leftSlave;
 	public static WPI_VictorSPX rightSlave;
+
+	public static WPI_VictorSPX intakesucc;
 	
 	//differential drive
 	public static DifferentialDrive diffdrive;
@@ -47,8 +49,9 @@ public class RobotMap {
 		diffdrive = new DifferentialDrive(leftDrive,rightDrive);
 		leftSlave = new WPI_VictorSPX(1);
 		rightSlave = new WPI_VictorSPX(2);
+		intakesucc = new WPI_VictorSPX(5);
 
-		Piston1 = new DoubleSolenoid(5, 6);
+		Piston1 = new DoubleSolenoid(6, 7);
 		
 
 		
