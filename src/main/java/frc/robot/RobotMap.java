@@ -35,8 +35,7 @@ public class RobotMap {
 	public static DifferentialDrive diffdrive;
 
 	public static DoubleSolenoid Piston1;
-	public static DoubleSolenoid Piston2;
-	public static DoubleSolenoid Piston3;
+	
 
 
 	public static void init()
@@ -49,9 +48,8 @@ public class RobotMap {
 		leftSlave = new WPI_VictorSPX(1);
 		rightSlave = new WPI_VictorSPX(2);
 
-		Piston1 = new DoubleSolenoid(7, 8);
-		Piston2 = new DoubleSolenoid(9,10);
-		Piston3 = new DoubleSolenoid(11,12);
+		Piston1 = new DoubleSolenoid(5, 6);
+		
 
 		
 		diffdrive.setSafetyEnabled(false);
