@@ -71,10 +71,10 @@ public class Robot extends TimedRobot
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
-	WPI_TalonSRX leftDrive = RobotMap.leftDrive;
-	WPI_TalonSRX rightDrive = RobotMap.rightDrive;
-	WPI_VictorSPX leftSlave = RobotMap.leftSlave;
-	WPI_VictorSPX rightSlave = RobotMap.rightSlave;
+	public static WPI_TalonSRX leftDrive = RobotMap.leftDrive;
+	public static WPI_TalonSRX rightDrive = RobotMap.rightDrive;
+	public static WPI_VictorSPX leftSlave = RobotMap.leftSlave;
+	public static WPI_VictorSPX rightSlave = RobotMap.rightSlave;
 
 	private VisionThread visionThread;
 	private double centerX = 0.0;
@@ -104,9 +104,9 @@ public class Robot extends TimedRobot
     	});
     	visionThread.start();
 		
-
-		m_oi = new OI();
 		m_hatch = new Hatch();
+		m_oi = new OI();
+		
 		//m_hatchbutt = m_oi.hatchbutt;
 		
 		//idk what this is but it was in the example so...
