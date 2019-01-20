@@ -118,7 +118,6 @@ public class Robot extends TimedRobot
 		
 		//idk what this is but it was in the example so...
 		
-		//should be uncommented
 		leftDrive.setInverted(true);
 		rightDrive.setInverted(true);
 
@@ -179,7 +178,9 @@ public class Robot extends TimedRobot
 	public void teleopInit() {
 
 		//dunno if this works or if it matters
-		tele.end();
+
+		// end conditionally?
+		//tele.end();
 		tele = new TeleOpCommands();
 		tele.start();
 		
