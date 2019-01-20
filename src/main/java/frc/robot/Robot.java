@@ -71,10 +71,10 @@ public class Robot extends TimedRobot
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
-	public static WPI_TalonSRX leftDrive = RobotMap.leftDrive;
-	public static WPI_TalonSRX rightDrive = RobotMap.rightDrive;
-	public static WPI_VictorSPX leftSlave = RobotMap.leftSlave;
-	public static WPI_VictorSPX rightSlave = RobotMap.rightSlave;
+	public static WPI_TalonSRX leftDrive;
+	public static WPI_TalonSRX rightDrive;
+	public static WPI_VictorSPX leftSlave;
+	public static WPI_VictorSPX rightSlave;
 
 	private VisionThread visionThread;
 	private double centerX = 0.0;
@@ -85,31 +85,37 @@ public class Robot extends TimedRobot
 	//public static Button m_hatchbutt;
 	@Override
 	public void robotInit() {
-        RobotMap.init();
-        
-		UsbCamera theCamera = CameraServer.getInstance().startAutomaticCapture();
-		// old camera code
-		//theCamera.setVideoMode(theCamera.enumerateVideoModes()[101]);
-		theCamera.setResolution(IMG_WIDTH, IMG_HEIGHT);
+		RobotMap.init();
+		leftDrive = RobotMap.leftDrive;
+		rightDrive = RobotMap.rightDrive;
+		leftSlave = RobotMap.leftSlave;
+		rightSlave = RobotMap.rightSlave;
+
+		// UsbCamera theCamera = CameraServer.getInstance().startAutomaticCapture();
+		// // old camera code
+		// //theCamera.setVideoMode(theCamera.enumerateVideoModes()[101]);
+		// theCamera.setResolution(IMG_WIDTH, IMG_HEIGHT);
     
-    	visionThread = new VisionThread(theCamera, new GripPipeline(), pipeline -> {
-        if (!pipeline.filterContoursOutput().isEmpty()) {
-            Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
-            synchronized (imgLock) {
-				centerX = r.x + (r.width / 2);
-				System.out.println(centerX);
-			}
+    	// visionThread = new VisionThread(theCamera, new GripPipeline(), pipeline -> {
+        // if (!pipeline.filterContoursOutput().isEmpty()) {
+        //     Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
+        //     synchronized (imgLock) {
+		// 		centerX = r.x + (r.width / 2);
+		// 		System.out.println(centerX);
+		// 	}
 			
-        }	
-    	});
-    	visionThread.start();
+        // }	
+    	// });
+    	// visionThread.start();
 		
+
 		m_hatch = new Hatch();
 		m_oi = new OI();
-		
 		//m_hatchbutt = m_oi.hatchbutt;
 		
 		//idk what this is but it was in the example so...
+		
+		//should be uncommented
 		leftDrive.setInverted(true);
 		rightDrive.setInverted(true);
 
