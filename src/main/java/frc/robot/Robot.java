@@ -54,6 +54,7 @@ import edu.wpi.first.vision.VisionThread;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import java.io.*;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -67,8 +68,7 @@ public class Robot extends TimedRobot
     public static OI m_oi;
 	
 	public static DriveTrain m_drivetrain;
-	private static final int IMG_WIDTH = 320;
-	private static final int IMG_HEIGHT = 240;
+
 
 	
 	Command m_onlyCommand;
@@ -83,13 +83,13 @@ public class Robot extends TimedRobot
 	public static WPI_VictorSPX leftSlave;
 	public static WPI_VictorSPX rightSlave;
 	
-	private VisionThread visionThread;
-	private double centerX = 0.0;
-	private final Object imgLock = new Object();
+	
+	public static Camera m_camgrill;
+	
 	public static TeleOpCommands tele;
 
 	public static Hatch m_hatch;
-	public static IntakeSucc intakesucc;
+	public static IntakeSucc m_intakesucc;
 
 	//public static Button m_hatchbutt;
 	@Override
@@ -100,26 +100,14 @@ public class Robot extends TimedRobot
 		leftSlave = RobotMap.leftSlave;
 		rightSlave = RobotMap.rightSlave;
 		
-
-		UsbCamera theCamera = CameraServer.getInstance().startAutomaticCapture();
-		//theCamera.setVideoMode(theCamera.enumerateVideoModes()[101]);
-		theCamera.setResolution(IMG_WIDTH, IMG_HEIGHT);
-    
-    	visionThread = new VisionThread(theCamera, new GripPipeline(), pipeline -> {
-        if (!pipeline.filterContoursOutput().isEmpty()) {
-             Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
-             synchronized (imgLock) {
-		 		centerX = r.x + (r.width / 2);
-		 		System.out.println(centerX);
-		 	}
-         }	
-    	 });
-    	 visionThread.start();
+		//PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("poetry.out")));
+		
 		
 
 		m_hatch = new Hatch();
 		
-		intakesucc = new IntakeSucc();
+		m_intakesucc = new IntakeSucc();
+		m_camgrill = new Camera();
 		m_oi = new OI();
 		//m_hatchbutt = m_oi.hatchbutt;
 		
