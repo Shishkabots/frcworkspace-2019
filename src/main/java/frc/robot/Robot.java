@@ -82,14 +82,15 @@ public class Robot extends TimedRobot
 	public static WPI_TalonSRX rightDrive;
 	public static WPI_VictorSPX leftSlave;
 	public static WPI_VictorSPX rightSlave;
-	public static IntakeSucc intakesucc;
-
+	
 	private VisionThread visionThread;
 	private double centerX = 0.0;
 	private final Object imgLock = new Object();
 	public static TeleOpCommands tele;
 
 	public static Hatch m_hatch;
+	public static IntakeSucc intakesucc;
+
 	//public static Button m_hatchbutt;
 	@Override
 	public void robotInit() {
