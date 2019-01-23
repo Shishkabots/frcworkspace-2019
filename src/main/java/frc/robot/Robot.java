@@ -108,7 +108,6 @@ public class Robot extends TimedRobot
 		
 		m_intakesucc = new IntakeSucc();
 		m_camgrill = new Camera();
-		m_oi = new OI();
 		//m_hatchbutt = m_oi.hatchbutt;
 		
 		//idk what this is but it was in the example so...
@@ -120,6 +119,8 @@ public class Robot extends TimedRobot
 		rightSlave.setInverted(true);
 
 		m_drivetrain = new DriveTrain();
+		
+		m_oi = new OI();
 			
 		//code to test motors
 		leftSlave.set(ControlMode.PercentOutput, 50);
