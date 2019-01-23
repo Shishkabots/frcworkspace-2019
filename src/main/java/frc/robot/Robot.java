@@ -118,8 +118,9 @@ public class Robot extends TimedRobot
 		
 
 		m_hatch = new Hatch();
-		m_oi = new OI();
+		
 		intakesucc = new IntakeSucc();
+		m_oi = new OI();
 		//m_hatchbutt = m_oi.hatchbutt;
 		
 		//idk what this is but it was in the example so...
