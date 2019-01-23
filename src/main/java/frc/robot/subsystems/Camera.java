@@ -28,6 +28,7 @@ public class Camera extends Subsystem {
     private VisionThread visionThread;
     private final Object imgLock = new Object();
     public  double m_centerX = 0.0;
+    public Rect r;
 	public Camera()
 	{
         UsbCamera theCamera = CameraServer.getInstance().startAutomaticCapture();
@@ -36,7 +37,7 @@ public class Camera extends Subsystem {
     
     	visionThread = new VisionThread(theCamera, new GripPipeline(), pipeline -> {
         if (!pipeline.filterContoursOutput().isEmpty()) {
-             Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
+             r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
              synchronized (imgLock) {
 				 m_centerX = r.x + (r.width / 2);
 				 
