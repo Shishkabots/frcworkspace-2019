@@ -61,7 +61,7 @@ public class OI {
 	*/
 	public Button hatchbutt = new JoystickButton(joystick,5);
 	public Button succbutt = new JoystickButton(joystick, 6);
-	public Button camerabutt = new JoystickButton(joystick,7);
+	public Button camerabutt = new JoystickButton(joystick,3);
 	
     //hatchbutt.whenPressed(new HatchActivate());
     

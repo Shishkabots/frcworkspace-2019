@@ -10,7 +10,7 @@ public class TeleOpCommands extends CommandGroup {
     public static DriveTrainControl drive;
     public TeleOpCommands() {
         drive = new DriveTrainControl();
-       addParallel(drive);
+        addParallel(drive);
        //addParallel(new LinearSlideControl());
        //addParallel(new IntakeControl());
        //addParallel(new ClawsControl());

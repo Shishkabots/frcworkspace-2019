@@ -26,7 +26,7 @@ public class Camera extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     private VisionThread visionThread;
-    private final Object imgLock = new Object();
+    public final Object imgLock = new Object();
     public  double m_centerX = 0.0;
     public Rect r;
 	public Camera()
@@ -40,7 +40,6 @@ public class Camera extends Subsystem {
              r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
              synchronized (imgLock) {
 				 m_centerX = r.x + (r.width / 2);
-				 
 		 		System.out.println("CAMERA VALUE" + m_centerX);
 		 	}
          }
