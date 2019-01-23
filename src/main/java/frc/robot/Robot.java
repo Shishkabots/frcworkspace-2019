@@ -24,14 +24,20 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import org.opencv.core.Mat;
+import org.opencv.imgproc.Imgproc;
+
+import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.CvSource;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
+
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
 import org.opencv.core.Rect;
 import org.opencv.imgproc.Imgproc;
 
-import edu.wpi.cscore.UsbCamera;
-import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -43,8 +49,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.*;
-import edu.wpi.first.wpilibj.vision.VisionRunner;
-import edu.wpi.first.wpilibj.vision.VisionThread;
+import edu.wpi.first.vision.VisionRunner;
+import edu.wpi.first.vision.VisionThread;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -94,21 +100,20 @@ public class Robot extends TimedRobot
 		rightSlave = RobotMap.rightSlave;
 		
 
-		// UsbCamera theCamera = CameraServer.getInstance().startAutomaticCapture();
-		// //theCamera.setVideoMode(theCamera.enumerateVideoModes()[101]);
-		// theCamera.setResolution(IMG_WIDTH, IMG_HEIGHT);
+		UsbCamera theCamera = CameraServer.getInstance().startAutomaticCapture();
+		//theCamera.setVideoMode(theCamera.enumerateVideoModes()[101]);
+		theCamera.setResolution(IMG_WIDTH, IMG_HEIGHT);
     
-    	// visionThread = new VisionThread(theCamera, new GripPipeline(), pipeline -> {
-        // if (!pipeline.filterContoursOutput().isEmpty()) {
-        //     Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
-        //     synchronized (imgLock) {
-		// 		centerX = r.x + (r.width / 2);
-		// 		System.out.println(centerX);
-		// 	}
-			
-        // }	
-    	// });
-    	// visionThread.start();
+    	visionThread = new VisionThread(theCamera, new GripPipeline(), pipeline -> {
+        if (!pipeline.filterContoursOutput().isEmpty()) {
+             Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
+             synchronized (imgLock) {
+		 		centerX = r.x + (r.width / 2);
+		 		System.out.println(centerX);
+		 	}
+         }	
+    	 });
+    	 visionThread.start();
 		
 
 		m_hatch = new Hatch();
@@ -125,7 +130,7 @@ public class Robot extends TimedRobot
 		rightSlave.setInverted(true);
 
 		m_drivetrain = new DriveTrain();
-
+			
 		//code to test motors
 		leftSlave.set(ControlMode.PercentOutput, 50);
 		
